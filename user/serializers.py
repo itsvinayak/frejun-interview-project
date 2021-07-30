@@ -7,7 +7,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("id", "username", "email", "password")
+        fields = ("id", "username", "email", "password", "password2")
         extra_kwargs = {"password": {"write_only": True}}
 
     def save(
@@ -23,3 +23,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(self.validated_data["password"])
         user.save()
         return user
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("username", "password")

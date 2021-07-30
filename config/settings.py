@@ -87,12 +87,10 @@ DATABASES = {
 ### rest framework
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": [
+    "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
-    ],
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 
 
@@ -114,6 +112,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+## pagination
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
