@@ -24,13 +24,11 @@ def upload_file(request):
     file_obj = request.FILES["file"]
     if file_obj.name.split(".")[-1] != "csv":
         return Response({"message": "File type is not allowed"}, status=400)
-    file_path = os.path.join(settings.MEDIA_ROOT + "uploads/", file_obj.name)
-    with open(file_path, "wb+") as destination:
-        for chunk in file_obj.chunks():
-            destination.write(chunk)
-    print(request.user.id)
-    uploadFile.delay(file=file_path, user_id=request.user.id)
-    print(file_path, "-->>", file_obj.name)
+    ## reading file 
+    file = str(file_obj.read())
+    uploadFile.delay(file=file , user_id=request.user.id)
+
+    print(file_obj.read())
     return Response({"file": "uploaded"}, status=201)
 
 

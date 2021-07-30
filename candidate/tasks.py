@@ -12,13 +12,14 @@ def uploadFile(file, user_id):
     """
     Uploads a file to the server.
     """
-    # Create a csv reader
-    reader = csv.reader(open(file), delimiter=",")
+    file = list(file.split('\n'))
     user = User.objects.get(id=user_id)
     # Iterate over the rows in the csv
     obj = []
-    for row in reader:
-        obj_data = Candidate(user=user, name=row[0], phone_number=row[1])
+    for row in file:
+        temp = row.split(',')
+        print(temp)
+        obj_data = Candidate(user=user, name=temp[0], phone_number=temp[1])
         obj.append(obj_data)
     with transaction.atomic():
         Candidate.objects.bulk_create(obj)
