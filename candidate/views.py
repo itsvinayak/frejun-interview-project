@@ -42,6 +42,7 @@ def upload_file(request):
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 def get_candidate(request):
+    """ get candidates with pagination of 10 """
     paginator = PageNumberPagination()
     paginator.page_size = 10
     user_id = Token.objects.get(key=request.auth.key).user_id

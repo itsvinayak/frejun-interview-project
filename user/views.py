@@ -55,6 +55,7 @@ def login_view(request):
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 def logout(request):
+    """ logout delete's token """
     try:
         request.user.auth_token.delete()
     except:
