@@ -1,5 +1,10 @@
 # frejun-interview-project
 
+## Task to be completed
+- Create Signup, Login and Logout APIs (No frontend needed)
+- Create an upload API using which you can upload a CSV file and create Candidate (Name, Phone number) objects in the database
+  Note: These candidates should be created with respect to the user.
+- Create an API to obtain these candidates with pagination as 10.
 
 # Installation
 
@@ -71,3 +76,12 @@ curl -X PUT \
 </pre>
 
 ![Screenshot from 2021-07-30 02-47-05](https://user-images.githubusercontent.com/33996594/127600223-2f6c7af8-48f1-4cdb-9e01-620a08ca49a0.png)
+
+
+### for speeding up and to optimize the creation of object in database with minimum hits. I have used <b> .bulk_create(obj) </b> method which hits database only once
+
+code used :
+<pre>
+ with transaction.atomic():
+        Candidate.objects.bulk_create(obj)
+</pre>
