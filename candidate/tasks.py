@@ -1,8 +1,10 @@
-from django.db import transaction
-from django.contrib.auth.models import User
-from candidate.models import Candidate
 import csv
+
 from celery import shared_task
+from django.contrib.auth.models import User
+from django.db import transaction
+
+from candidate.models import Candidate
 
 
 @shared_task
